@@ -10,11 +10,45 @@ drawClock();
 
 //function used to create the face of the clock
 function drawClock() {
-ctx.arc(0,0,radius,0,2*Math.PI);
-ctx.fillstyle = "White";
-ctx.fill();
+drawFace(ctx, radius);
 
 }
+
+function drawFace(ctx,radius){
+    var grad;
+    ctx.beginPath();                //actual path begins
+    ctx.arc(0,0, radius, 0, 2*Math.PI);      //draws the circle
+    ctx.fillstyle = "White";                //gives the white background
+    ctx.fill();
+    grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0, radius*1.05);  //creation of the gradent
+    grad.addColorstop(0, '#333');
+    grad.addColorstop(0.5, 'White');
+    grad.addColorstop(1, '#333');     //colors represent the inner,middle and outer colors
+    ctx.strokeStyle = grad;
+    ctx.lineWidth = radius*0.1;
+    ctx.stroke();               
+    ctx.beginPath();            //draws the actual center of the clock
+    ctx.arc(0,0, radius*0.1, 0, 2*Math.PI);
+    ctx.fillstyle = '#333';
+    ctx.fill();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*steps 
 first create the object canvas

@@ -11,6 +11,7 @@ drawClock();
 //function used to create the face of the clock
 function drawClock() {
 drawFace(ctx, radius);
+drawNumbers(ctx, radius);
 
 }
 
@@ -18,11 +19,11 @@ function drawFace(ctx,radius){
     var grad;
     ctx.beginPath();                //actual path begins
     ctx.arc(0,0, radius, 0, 2*Math.PI);      //draws the circle
-    ctx.fillstyle = "White";                //gives the white background
+    ctx.fillstyle = "black";                //gives the white background
     ctx.fill();
     grad = ctx.createRadialGradient(0,0,radius*0.95, 0,0, radius*1.05);  //creation of the gradent
     grad.addColorstop(0, '#333');
-    grad.addColorstop(0.5, 'White');
+    grad.addColorstop(0.5, 'black');
     grad.addColorstop(1, '#333');     //colors represent the inner,middle and outer colors
     ctx.strokeStyle = grad;
     ctx.lineWidth = radius*0.1;
@@ -33,6 +34,27 @@ function drawFace(ctx,radius){
     ctx.fill();
 
 }
+function drawNumbers(){
+        var ang;
+        var num;
+        ctx.font = radius*0.15 + "px arial";
+        ctx.textBaseline="middle";
+        ctx.textAlign="center";
+        for(num = 1; num< 13; num++){
+            ang = num * Math.PI / 6;
+            ctx.rotate(ang);
+            ctx.translate(0, radius*0.85);
+            ctx.rotate(-ang);
+            ctx.fillText(num.toString(), 0, 0);
+            ctx.rotate(ang);
+            ctx.translate(0, radius*0.85);
+            ctx.rotate(-ang);
+        
+        }
+    }
+
+
+
 
 
 
